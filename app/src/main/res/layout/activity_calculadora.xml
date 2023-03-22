@@ -163,12 +163,4 @@
         </TableRow>
     </TableLayout>
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/sally_has_a_lower_back_tattoo_that_shes_ashamed_of_in_cars_1623260331"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="252dp" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
