@@ -21,15 +21,24 @@ public class MainActivity extends AppCompatActivity {
         resultado = findViewById(R.id.resultado);
         texto = resultado.getText().toString();
         contaAnterior = findViewById(R.id.contaAnterior);
-        for (int i = 0; i <= 20; i++) {
+        for (int i = 0; i <= 19; i++) {
             botoes[i] = findViewById(Ids[i]);
             int finalI = i;
-            botoes[i].setOnClickListener(new View.OnClickListener() { //cria um listener para click
-                @Override
-                public void onClick(View view) { //chama o método
-                    caracteres(botoes[finalI]);
-                }
-            });
+            if ((Ids[i] == (R.id.CE)) || (Ids[i] == (R.id.CE)) || (Ids[i] == (R.id.CE))) {
+                botoes[i].setOnClickListener(new View.OnClickListener() { //cria umlistener para click
+                    @Override
+                    public void onClick(View view) { //chama o método
+                        operacao(botoes[finalI]);
+                    }
+                });
+            } else {
+                botoes[i].setOnClickListener(new View.OnClickListener() { //cria um listener para click
+                    @Override
+                    public void onClick(View view) { //chama o método
+                        caracteres(botoes[finalI]);
+                    }
+                });
+            }
         }
         botoes[20].setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,13 +49,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void caracteres(Button carac) {
-        if (texto != "Resultado") {
+        if (texto != "0") {
             texto = (carac.getText().toString() + "");
             resultado.setText(texto);
         } else {
             texto += (carac.getText().toString() + "");
             resultado.setText(texto);
         }
+    }
+    public void operacao(Button opera){
+
     }
 
     public void calcular() {
