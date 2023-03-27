@@ -1,4 +1,7 @@
 package com.example.calculadora;
+//A arrumar - Restantes dos botões de operação
+//botão calcular
+//botão
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     int[] Ids = {R.id.raiz, R.id.potencia, R.id.CE, R.id.C, R.id.sete, R.id.oito, R.id.nove, R.id.multi, R.id.quatro, R.id.cinco, R.id.seis, R.id.sub, R.id.um, R.id.dois, R.id.tres, R.id.soma, R.id.mudaSinal, R.id.zero, R.id.virgula, R.id.divisao, R.id.calcular};
     Button[] botoes = new Button[21];
     String texto;
+    String segundoNum;
     String atualOpera;
 
     @Override
@@ -23,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         resultado = findViewById(R.id.resultado);
         texto = resultado.getText().toString();
         atualOpera = "";
+        segundoNum = "";
         contaAnterior = findViewById(R.id.contaAnterior);
         for (int i = 0; i <= 20; i++) {
             botoes[i] = findViewById(Ids[i]);
@@ -57,29 +62,11 @@ public class MainActivity extends AppCompatActivity {
             resultado.setText(texto);
         } else if (carac.getText().toString().equals("+") || carac.getText().toString().equals("-") || carac.getText().toString().equals("x") || carac.getText().toString().equals(":")) {
             atualOpera = carac.getText().toString();
-        }
-        else {
-            if ((!carac.getText().toString().equals("+") || !carac.getText().toString().equals("-") || !carac.getText().toString().equals("x")|| !carac.getText().toString().equals(":"))&& atualOpera != "") {
-                int textoValue = Integer.parseInt(texto);
-                if (atualOpera.equals("+")) {
-                    textoValue = Integer.parseInt(texto)+Integer.parseInt(carac.getText().toString());
-                    atualOpera = "";
-                    resultado.setText(textoValue+"");
-                }
-                else if (atualOpera.equals("-")) {
-                    textoValue = textoValue-Integer.parseInt(carac.getText().toString());
-                    atualOpera = "";
-                    resultado.setText(textoValue+"");
-                }
-                else if (atualOpera.equals("x")) {
-                    textoValue = textoValue*Integer.parseInt(carac.getText().toString());
-                    atualOpera = "";
-                    resultado.setText(textoValue+"");
-                }
-                else if (atualOpera.equals(":")) {
-                    textoValue = textoValue/Integer.parseInt(carac.getText().toString());
-                    atualOpera = "";
-                    resultado.setText(textoValue+"");
+        } else {
+            if ((!carac.getText().toString().equals("+") || !carac.getText().toString().equals("-") || !carac.getText().toString().equals("x") || !carac.getText().toString().equals(":")) && atualOpera != "") {
+                if (segundoNum.length() <= 15) {
+                    segundoNum += carac.getText().toString();
+                    resultado.setText(segundoNum);
                 }
             } else if (texto.length() <= 15) {
                 texto += (carac.getText().toString());
@@ -99,6 +86,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void calcular() {
+        int textoValue = Integer.parseInt(texto);
+        int segundoNumValue = Integer.parseInt(segundoNum);
+        if (atualOpera.equals("+")) {
+            textoValue = textoValue + segundoNumValue;
+            atualOpera = "";
+            resultado.setText(textoValue + "");
+        } else if (atualOpera.equals("-")) {
+            textoValue = textoValue - segundoNumValue;
+            atualOpera = "";
+            resultado.setText(textoValue + "");
+        } else if (atualOpera.equals("x")) {
+            textoValue = textoValue * segundoNumValue;
+            atualOpera = "";
+            resultado.setText(textoValue + "");
+        } else if (atualOpera.equals(":")) {
+            textoValue = textoValue / segundoNumValue;
+            atualOpera = "";
+            resultado.setText(textoValue + "");
+        }
+        segundoNum = "";
     }
 
     public void raiz() {
